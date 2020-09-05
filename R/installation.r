@@ -13,6 +13,7 @@ BiocManager::install('microbiome')
 library(microbiome)
 
 # installing packages "knitr" general-purpose literate programming engine, with lightweight API's designed to give users full control of the output without heavy coding work. 
+# source: https://www.r-project.org/nosvn/pandoc/knitr.html
 install.packages('knitr')
 
 
