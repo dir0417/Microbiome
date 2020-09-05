@@ -12,7 +12,13 @@ BiocManager::install('microbiome')
 # Loading the package in R (after installation from Bioconductor)
 library(microbiome)
 
-# This microbiome package relies on external phyloseq datasets, which should already have been installed through BioManager::install('microbiome'), which you can use as tutorials (optional)
+# installing packages "knitr" general-purpose literate programming engine, with lightweight API's designed to give users full control of the output without heavy coding work. 
+install.packages('knitr')
+
+
+#TUTORIALS
+# This microbiome package relies on external phyloseq datasets, which should already have been installed through BioManager::install('microbiome'), 
+# which you can use as tutorials (optional)
 
 # data from http://www.nature.com/ncomms/2014/140708/ncomms5344/full/ncomms5344.html
 data(atlas1006) 
