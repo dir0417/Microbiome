@@ -9,11 +9,11 @@ data(atlas1006)
 pseq <- atlas1006
 
 
-##### SUMMARIZING THE DATA OF ATLAS1006 #####
+################################################## SUMMARIZING THE DATA OF ATLAS1006 ##################################################
 # provides a summary of min, max, total, average, and median number of reads.
 summarize_phyloseq(pseq)
 
-##### RETRIEVE DATA ELEMENTS FROM THE DATA #####
+################################################## RETRIEVE DATA ELEMENTS FROM THE DATA ##################################################
 # A phyloseq object contains OTU table (taxa abundances), sample metadata, taxonomy table (mapping between OTUs and higher-level taxonomic classifications), and phylogenetic tree (relations between the taxa).
 
 
@@ -46,7 +46,7 @@ head(meta(pseq)[,c("sample", "reads_sample")])
 df <- psmelt(pseq)
 kable(head(df))
 
-##### SAMPLE OPERATIONS #####
+################################################## SAMPLE OPERATIONS ##################################################
 # Sample names and variables
 head(sample_names(pseq))
 
@@ -69,7 +69,8 @@ pseq.subset2 <- prune_samples(s, pseq)
 # Pick samples at the baseline time points only:
 pseq0 <- baseline(pseq)
 
-##### DATA TRANSFORMATIONS #####
+
+################################################## DATA TRANSFORMATIONS ##################################################
 # The microbiome package provides a wrapper for standard sample/OTU transforms.Relative abundances (note that the input data needs to be in absolute scale, not logarithmic!):
 pseq.compositional <- microbiome::transform(pseq, "compositional")
 
@@ -97,7 +98,8 @@ div <- microbiome::alpha(pseq, index = "shannon")
 # Assign the estimated diversity to sample metadata
 sample_data(pseq)$diversity <- div
 
-##### TAXA OPERATIONS #####
+
+################################################## TAXA OPERATIONS ##################################################
 # Number of taxa
 n <- ntaxa(pseq)
 
@@ -134,7 +136,8 @@ samplename <- sample_names(pseq)[[1]]
 # Pick abundances for a particular taxon
 tax.abundances <- abundances(pseq)[, samplename]
 
-##### MERGING OPERATIONS #####
+
+################################################## MERGING OPERATIONS ##################################################
 # Aggregate taxa to higher taxonomic levels. This is particularly useful if the phylogenetic tree is missing. When it is available, see merge_samples, merge_taxa and tax_glom).
 pseq2 <- aggregate_taxa(pseq, "Phylum") 
 
@@ -144,7 +147,8 @@ pseq2 <- merge_taxa2(pseq, pattern = "^Bacteroides", name = "Bacteroides")
 # Merging phyloseq objects with the phyloseq package:
 merge_phyloseq(pseqA, pseqB)
 
-##### Joining otu/asv table and taxonomy in one data frame #####
+
+################################################## Joining otu/asv table and taxonomy in one data frame ##################################################
 library(dplyr) 
 library(microbiome)
 data("atlas1006") # example data from microbiome pkg
@@ -161,15 +165,17 @@ asv_tax_tab <- tax_tab %>%
 
 head(asv_tax_tab)[,1:8]
 
-##### RAREFACTION #####
+
+################################################## RAREFACTION ##################################################
 pseq.rarified <- rarefy_even_depth(pseq)
 
-##### TAXONOMY #####
+################################################## TAXONOMY ##################################################
 # Convert between taxonomic levels (here from Genus (Akkermansia) to Phylum (Verrucomicrobia):
 m <- map_levels("Akkermansia", "Genus", "Phylum", tax_table(pseq))
 print(m)
 
-##### METADATA #####
+
+################################################## METADATA ##################################################
 # Visualize frequencies of given factor (sex) levels within the indicated groups (group):
 p <- plot_frequencies(sample_data(pseq), "bmi_group", "sex")
 print(p)
