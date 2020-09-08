@@ -1,5 +1,7 @@
 # Microbiome
 
+Amplicon quality filtering: http://microbiomeutil.sourceforge.net/
+
 R / R Studio
 
 Leo Lahti, Sudarshan Shetty et al: https://microbiome.github.io/
